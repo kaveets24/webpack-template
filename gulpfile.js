@@ -38,11 +38,11 @@ const srcPaths = {
 };
 
 const buildPaths = {
-  root: "build/",
-  css: "build/css/",
-  fonts: "build/fonts/",
-  images: "build/images/",
-  js: "build/js/"
+  root: "dist/",
+  css: "dist/css/",
+  fonts: "dist/fonts/",
+  images: "dist/images/",
+  js: "dist/js/"
 };
 
 function compileJs() {
@@ -91,7 +91,7 @@ function watchFiles() {
   return watch(files, series(parallel(compileSass, compileJs)));
 }
 
-// Clean /build
+// Clean /dist
 function cleanBuildDir() {
   return src(buildPaths.root, { read: false, allowEmpty: true }).pipe(
     clean({ force: true })

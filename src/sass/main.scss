@@ -1,6 +1,6 @@
 // Base
-@import 'base/reset';
-@import 'base/styleguide';
+@import './base/reset';
+@import './base/styleguide';
 
 
 *,
@@ -17,4 +17,10 @@ div {
   box-sizing: border-box;
   font-family: $fontMain;
   color: $fontBlack;
+}
+
+$red: red;
+
+.hello {
+  color: $red;
 }
