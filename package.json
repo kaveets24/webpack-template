@@ -1,14 +1,15 @@
 {
-  "name": "template",
+  "name": "webpack-example",
   "version": "1.0.0",
-  "main": "gulp",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --config webpack.config.js"
   },
   "repository": {
     "type": "git",
     "url": ""
   },
+  "private": true,
   "author": "Steven K.",
   "license": "ISC",
   "devDependencies": {
@@ -29,6 +30,11 @@
     "gulp-sass-glob": "^1.1.0",
     "gulp-sourcemaps": "^2.6.5",
     "gulp-uglify": "^3.0.2",
-    "node-sass": "^4.13.0"
+    "node-sass": "^4.13.0",
+    "webpack": "^4.41.4",
+    "webpack-cli": "^3.3.10"
+  },
+  "dependencies": {
+    "lodash": "^4.17.15"
   }
 }
