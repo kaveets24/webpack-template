@@ -15,9 +15,6 @@ module.exports = {
     main: ["./src/js/main.js", "webpack-hot-middleware/client"]
   },
   devtool: "inline-source-map",
-  devServer: {
-    contentBase: "./dist"
-  },
   plugins: [
     new CleanWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin(),
