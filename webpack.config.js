@@ -1,6 +1,6 @@
 const path = require("path");
 const TerserJSPlugin = require("terser-webpack-plugin");
-// const MiniCssExtractPlugin = require('mini-css-extract-plugin'); Don't need for now
+const MiniCssExtractPlugin = require("mini-css-extract-plugin"); // Useful for splitting CSS out from the main application.
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
@@ -21,6 +21,12 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       title: "Output Management"
+    }),
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+      options: {
+        hmr: process.env.NODE_ENV === "development"
+      }
     })
   ],
   output: {
@@ -29,15 +35,18 @@ module.exports = {
     publicPath: "/"
   },
   optimization: {
-    minimizer: [new TerserJSPlugin(), new OptimizeCSSAssetsPlugin({})]
+    minimizer: [new TerserJSPlugin(), new OptimizeCSSAssetsPlugin({})],
+    splitChunks: {
+      chunks: "all"
+    }
   },
   module: {
     rules: [
       {
         test: /\.s[ac]ss$/i,
         use: [
-          // Creates `style` nodes from JS strings
-          "style-loader",
+          // Extracts css from bundle.js and puts it into its own file.
+          MiniCssExtractPlugin.loader,
           // Translates CSS into CommonJS
           "css-loader",
           // Compiles Sass to CSS.
