@@ -5,7 +5,6 @@ const webpackDevMiddleware = require("webpack-dev-middleware");
 const app = express();
 const config = require("../webpack.config.js");
 const compiler = webpack(config);
-const path = require("path");
 
 // Tell express to use the webpack-dev-middleware and use the webpack.config.js
 // configuration file as a base.
