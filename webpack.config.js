@@ -5,22 +5,29 @@ const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
+const webpack = require("webpack"); // For Hot-Module-Replacement-Plugin
+
 module.exports = {
+  mode: "development",
   entry: {
-    app: "./src/js/main.js",
-    print: "./src/js/print.js"
+    main: ["webpack-hot-middleware/client", "./src/js/main.js"]
+  },
+  devtool: "inline-source-map",
+  devServer: {
+    contentBase: "./dist"
   },
   plugins: [
     new CleanWebpackPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       title: "Output Management"
     })
   ],
   output: {
     filename: "[name].bundle.js",
-    path: path.resolve(__dirname, "dist")
+    path: path.resolve(__dirname, "dist"),
+    publicPath: "/"
   },
-  mode: "development",
   optimization: {
     minimizer: [new TerserJSPlugin(), new OptimizeCSSAssetsPlugin({})]
   },

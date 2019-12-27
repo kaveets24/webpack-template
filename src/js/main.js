@@ -1,5 +1,5 @@
 import _ from "lodash";
-// import "../sass/main.scss";
+import "../sass/main.scss";
 // import Dog from "../images/dog.jpg";
 import printMe from "./print.js";
 
@@ -9,7 +9,8 @@ function component() {
   
 
   // Lodash, currently included via a script, is required for this line to work
-  element.innerHTML = _.join(["Hello", "webpack"], " ");
+  element.innerHTML = _.join(["Hello", "webpack"], " ");  
+  element.classList.add('hello');
 
   btn.innerHTML = 'Click me and check the console!';
   btn.onclick = printMe;
