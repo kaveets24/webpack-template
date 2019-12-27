@@ -5,8 +5,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack --config webpack.config.js",
     "watch": "webpack --watch",
-    "start": "webpack-dev-server --open",
-    "server": "node server/server.js"
+    "server": "node ./server/server.js"
   },
   "repository": {
     "type": "git",
@@ -29,7 +28,6 @@
     "webpack": "^4.41.4",
     "webpack-cli": "^3.3.10",
     "webpack-dev-middleware": "^3.7.2",
-    "webpack-dev-server": "^3.10.1",
     "webpack-hot-middleware": "^2.25.0"
   },
   "dependencies": {
