@@ -1,12 +1,23 @@
 const path = require("path");
 const TerserJSPlugin = require("terser-webpack-plugin");
-// const MiniCssExtractPlugin = require('mini-css-extract-plugin'); might not need for now
+// const MiniCssExtractPlugin = require('mini-css-extract-plugin'); Don't need for now
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 module.exports = {
-  entry: "./src/js/main.js",
+  entry: {
+    app: "./src/js/main.js",
+    print: "./src/js/print.js"
+  },
+  plugins: [
+    new CleanWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      title: "Output Management"
+    })
+  ],
   output: {
-    filename: "bundle.js",
+    filename: "[name].bundle.js",
     path: path.resolve(__dirname, "dist")
   },
   mode: "development",
