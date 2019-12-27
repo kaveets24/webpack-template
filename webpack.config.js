@@ -7,10 +7,12 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 
 const webpack = require("webpack"); // For Hot-Module-Replacement-Plugin
 
+const developmentMode = process.env.NODE_ENV !== "production";
+
 module.exports = {
   mode: "development",
   entry: {
-    main: ["webpack-hot-middleware/client", "./src/js/main.js"]
+    main: ["./src/js/main.js", "webpack-hot-middleware/client"]
   },
   devtool: "inline-source-map",
   devServer: {
@@ -23,10 +25,7 @@ module.exports = {
       title: "Output Management"
     }),
     new MiniCssExtractPlugin({
-      filename: "[name].css",
-      options: {
-        hmr: process.env.NODE_ENV === "development"
-      }
+      filename: developmentMode ? "[name].css" : "[name].[hash].css"
     })
   ],
   output: {
@@ -46,7 +45,13 @@ module.exports = {
         test: /\.s[ac]ss$/i,
         use: [
           // Extracts css from bundle.js and puts it into its own file.
-          MiniCssExtractPlugin.loader,
+          {
+            loader: MiniCssExtractPlugin.loader,
+            options: {
+              hmr: developmentMode
+            }
+          },
+
           // Translates CSS into CommonJS
           "css-loader",
           // Compiles Sass to CSS.
