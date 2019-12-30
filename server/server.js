@@ -12,18 +12,28 @@ const path = require("path");
 
 app.use(
   webpackDevMiddleware(compiler, {
-    publicPath: config.output.publicPath
+    publicPath: config.output.publicPath,
+    historyApiFallback: {
+      index: 'index.html'
+    }
   })
 );
 // HMR Support - https://github.com/webpack-contrib/webpack-hot-middleware
 app.use(require("webpack-hot-middleware")(compiler));
 
-const pagesDir = path.join(__dirname, "../src/pages/");
-app.all("/slider", (req, res) => {
+// const distDir = path.join(__dirname, "../dist/");
+const htmlFile = path.join(__dirname, "../dist/index.html");
 
-  const sliderDir = path.join(pagesDir, "./slider/")
-  res.sendFile("index.html", {root: sliderDir});
-});
+app.all('*', (req, res, next) => {
+  compiler.outputFileSystem.readFile(htmlFile, (err, result) => {
+  if (err) {
+    return next(err)
+  }
+  res.set('content-type', 'text/html')
+  res.send(result)
+  res.end()
+  })
+})
 
 // Serve the files.
 const PORT = process.env.PORT || 3000;
