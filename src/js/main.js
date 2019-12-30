@@ -1,7 +1,6 @@
 import _ from "lodash";
 import "../sass/main.scss";
-// import Dog from "../images/dog.jpg";
-import printMe from "./print.js";
+import printMe from "./modules/print/";
 
 
 function component() {
@@ -10,7 +9,7 @@ function component() {
   element.innerHTML = _.join(["Hello", "webpack"], " ");
   element.classList.add("hello");
 
-  btn.innerHTML = "Click me and check the console!";
+  btn.innerHTML = "Click Me";
   btn.onclick = printMe;
   element.appendChild(btn);
   return element;
