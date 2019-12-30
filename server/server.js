@@ -13,9 +13,7 @@ const path = require("path");
 app.use(
   webpackDevMiddleware(compiler, {
     publicPath: config.output.publicPath,
-    historyApiFallback: {
-      index: 'index.html'
-    }
+
   })
 );
 // HMR Support - https://github.com/webpack-contrib/webpack-hot-middleware
