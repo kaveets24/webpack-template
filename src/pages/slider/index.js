@@ -1,12 +1,12 @@
-const sliderPage = function() {
+const sliderPage = () => {
   const slider = document.getElementById("slider");
   const value = document.querySelector(".value");
 
   value.innerHTML = slider.value;
 
   slider.oninput = function() {
-    value.innerHTML = _.join(["The value is", ":"], " ") + this.value;
+    value.innerHTML = this.value;
   };
 };
 
-export default sliderPage;
+sliderPage();

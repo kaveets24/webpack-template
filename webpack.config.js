@@ -12,7 +12,8 @@ const developmentMode = process.env.NODE_ENV !== "production";
 module.exports = {
   mode: "development",
   entry: {
-    main: ["./src/js/main.js", "webpack-hot-middleware/client"]
+    main: ["./src/js/main.js", "webpack-hot-middleware/client"],
+    sliderPage: "./src/pages/slider/index.js"
   },
   devtool: "inline-source-map",
   plugins: [
@@ -20,6 +21,8 @@ module.exports = {
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       title: "Output Management",
+      template: "./src/pages/home/index.html",
+      excludeChunks: ["sliderPage"]
     }),
     new MiniCssExtractPlugin({
       filename: developmentMode ? "[name].css" : "[name].[hash].css"

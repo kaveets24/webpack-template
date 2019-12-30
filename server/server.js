@@ -18,6 +18,13 @@ app.use(
 // HMR Support - https://github.com/webpack-contrib/webpack-hot-middleware
 app.use(require("webpack-hot-middleware")(compiler));
 
+const pagesDir = path.join(__dirname, "../src/pages/");
+app.all("/slider", (req, res) => {
+
+  const sliderDir = path.join(pagesDir, "./slider/")
+  res.sendFile("index.html", {root: sliderDir});
+});
+
 // Serve the files.
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, function() {
