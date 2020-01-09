@@ -19,7 +19,8 @@ module.exports = {
     new CleanWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      title: "Output Management"
+      title: "Thirdwave Webpack Example",
+      template: "./src/index.html",
     }),
     new MiniCssExtractPlugin({
       filename: developmentMode ? "[name].css" : "[name].[hash].css"
@@ -27,6 +28,7 @@ module.exports = {
   ],
   output: {
     filename: "[name].bundle.js",
+    chunkFilename: "[name].bundle.js",
     path: path.resolve(__dirname, "dist"),
     publicPath: "/"
   },
@@ -38,6 +40,25 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.(html)$/,
+        use: {
+          loader: "html-loader",
+          options: {
+            attrs: [":data-src"]
+          }
+        }
+      },
+      {
+        test: /\.m?js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"]
+          }
+        }
+      },
       {
         test: /\.s[ac]ss$/i,
         use: [
