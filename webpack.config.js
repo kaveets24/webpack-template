@@ -19,8 +19,14 @@ module.exports = {
     new CleanWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
+<<<<<<< HEAD
       title: "Thirdwave Webpack Example",
       template: "./src/index.html",
+=======
+      title: "Output Management",
+      template: "./src/index.html",
+      excludeChunks: ["sliderPage"]
+>>>>>>> 41d4eacb10d0bea91e578ede7b4c36bd4471f22a
     }),
     new MiniCssExtractPlugin({
       filename: developmentMode ? "[name].css" : "[name].[hash].css"
