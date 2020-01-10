@@ -19,7 +19,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      title: "Thirdwave Webpack Example",
+      title: "Webpack Starter",
       template: "./src/index.html",
     }),
     new MiniCssExtractPlugin({
