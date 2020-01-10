@@ -1,10 +1,9 @@
-// Base
-@import './base/reset';
-@import './base/styleguide';
-
 // Vendor
 @import './vendor/bootstrap-grid.min';
 
+// Base
+@import './base/reset';
+@import './base/styleguide';
 
 *,
 li,
@@ -22,7 +21,7 @@ div {
   color: $fontBlack;
 }
 
-$red: green;
+$red: red;
 
 .hello {
   color: $red;
