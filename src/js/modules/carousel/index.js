@@ -1,6 +1,7 @@
 import "./styles.scss";
 import carousel from "./carousel.html";
 
+
 class Carousel extends HTMLElement {
   constructor() {
     super();
