@@ -27,7 +27,7 @@ class Carousel extends HTMLElement {
     // Create container
     const container = document.createElement("div");
     container.innerHTML = carousel;
-    container.classList.add("carousel");
+    container.classList.add("slider");
     this.shadow.appendChild(container);
   }
 }
