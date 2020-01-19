@@ -11,6 +11,7 @@ body {
   font-family: "Ropa Sans", sans-serif;
 }
 
+
 .slider {
   width: 800px;
   text-align: center;
@@ -25,7 +26,6 @@ body {
 
   scroll-behavior: smooth;
   -webkit-overflow-scrolling: touch;
-
 }
 .slides::-webkit-scrollbar {
   width: 10px;
@@ -51,8 +51,6 @@ body {
   justify-content: center;
   align-items: center;
   font-size: 100px;
-
-
 }
 
 img {
@@ -89,3 +87,23 @@ img {
   }
 }
 
+a.previous, a.next {
+    display: block;
+    position: absolute;
+    height: 20px;
+    width: 50px;
+    background: grey;;
+    top: 50%;
+    z-index: 100;
+    text-decoration: none;
+    text-align: center;
+}
+
+a.previous {
+   left: 100px
+ 
+}
+a.next {
+  right: 100px;
+ 
+}

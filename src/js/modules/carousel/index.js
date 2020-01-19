@@ -1,34 +1,38 @@
 import "./styles.scss";
-import carousel from "./carousel.html";
 
-
-class Carousel extends HTMLElement {
+class Carousel {
   constructor() {
-    super();
-    this.init();
-  }
+    this.state = {
+      slideIndex: 1,
+      currentSlideRef: `#slide-1`
+    };
 
-  init() {
-    // Create shadow dom - https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_shadow_DOM
-    this.shadow = this.attachShadow({ mode: "open" }); // "open" means we can access this shadow dom from within the page.
-    this.addContainer();
-    this.addStyles();
-  }
+    this.slider = document.querySelector(".slider");
+    this.previous = document.querySelector(".previous");
+    this.next = document.querySelector(".next");
+    this.slides = document.querySelector(".slides");
+    this.slideCount = this.slides.children.length;
 
-  addStyles() {
-    // Point our component to the main.css file.
-    const link = document.createElement("link");
-    link.setAttribute("rel", "stylesheet");
-    link.setAttribute("href", "main.css");
-    this.shadow.appendChild(link);
-  }
+    this.next.onclick = () => {
+      if (this.state.slideIndex < this.slideCount) {
+        this.state.slideIndex += 1;
+      } else {
+        this.state.slideIndex = 1;
+      }
+      this.state.currentSlideRef = `#slide-${this.state.slideIndex}`;
+      this.next.href = this.state.currentSlideRef;
+    };
 
-  addContainer() {
-    // Create container
-    const container = document.createElement("div");
-    container.innerHTML = carousel;
-    container.classList.add("slider");
-    this.shadow.appendChild(container);
+    this.previous.onclick = () => {
+      if (this.state.slideIndex > 1) {
+        this.state.slideIndex -= 1;
+      } else {
+        this.state.slideIndex = this.slideCount;
+      }
+      this.state.currentSlideRef = `#slide-${this.state.slideIndex}`;
+      this.previous.href = this.state.currentSlideRef;
+    };
   }
 }
-customElements.define("ok-carousel", Carousel);
+
+const C = new Carousel();
